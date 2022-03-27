@@ -1,0 +1,40 @@
+{% extends 'bootstrap/base.html'%}
+
+{% block head %}
+    {{super()}}
+     <title>{% block title%} Platzi | {% endblock %}</title>
+     <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
+{% endblock %}
+
+{% block body %}
+    {% block navbar %}
+        {% include 'navbar.html'%}
+    {% endblock %}
+
+    <!--Vamor hacer uno de get_flashed_messages(), al igual que url_for que flash pone a la disposición desde que se inicializa
+     la aplicacion, esa funcion get_flashed_messages() tambien se puede importar en un archivo .py por si lo necesitamos-->
+
+    {% for message in get_flashed_messages() %}
+        <!--para BT un flash es un alert, tipo alert-success de exito, y alert-dismissable que se puede quitar el alert, se le agrega un x para cerrar, data-dismmiss busca el js
+        para poder cerrar, la forma de agregar una x &times;-->
+        <div class="alert alert-success alert-dismissable">
+            <button type="button" data-dismiss="alert" class="close">&times;</button>
+            {{message}}
+        </div>
+    {% endfor %}
+
+    {% block content %}
+    {% endblock %}
+
+    {% block scripts %}
+        {{super()}}
+    {% endblock %}
+
+
+{% endblock %}
+
+
+
+
+
+

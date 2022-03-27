@@ -1,0 +1,9 @@
+/*Todo lo que este dentro del html tenga ese font-family*/
+html *{
+    font-family: sans-serif;
+}
+
+img {
+    max-width: 30px;
+}
+

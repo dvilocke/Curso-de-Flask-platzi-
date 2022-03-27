@@ -1,0 +1,59 @@
+<!--Hemos visto 3 formas de importación, estan, extends , include y import
+    -import funciona como en python, es decir, con import podemos importar un archivo python, en este caso
+    importamos  un html que es un macro que son funciones que yo puedo utilizar en archivos html, una ventaja
+    espectacular
+    -extends para llamar a una plantilla, esta plantilla que has llamado toma el controlde tu vista
+    -->
+
+    <!--
+    -import lo unico que hace es enlazar una platilla con otra y será la platilla base que tendrá el control
+    de hacer la llamada al contenido de la otra plantilla.
+    -include simplemente es incrustar un fragmento de codigo
+    Nota: recuerda ctrl + R para recargar la pagina
+    -->
+
+{% extends 'base.html'%}
+{% import 'macros.html' as macros %}
+<!--Otra forma de renderial-->
+{% import 'bootstrap/wtf.html' as wtf%}
+
+{% block title %}
+    {{super()}}
+    Bienvenido
+{% endblock %}
+
+{%block content%}
+
+    {% if username %}
+        <!--como utilizar un filtro, digamos que las variables tienen un filtro, digamos que el username
+        quiero ponerlo en mayuscula simplemente le agrego | capitalize, se puede buscar otras https://jinja.palletsprojects.com/en/3.0.x/templates/#builtin-filters-->
+        <h1>Bienvenido {{username | capitalize() }}</h1>
+    {% endif %}
+
+    {% if user_ip %}
+        <h1>Hello, tu ip es {{user_ip}}</h1>
+    {%else%}
+        <a href="{{url_for('index')}}" >Ir a Inicio</a>
+    {% endif %}
+
+    <div class="container">
+        <form action="{{url_for('home')}}" method="post">
+            <!--Una forma de renderizar
+            {{login_form.username.label}}
+            {{login_form.username}}
+            -->
+            <!--Otra forma de renderizar-->
+            {{wtf.quick_form(login_form)}}
+        </form>
+    </div>
+
+    <ul>
+        {% for todo in todos  %}
+            {{macros.render_todo(todo)}}
+        {% endfor %}
+    </ul>
+
+{% endblock %}
+
+
+

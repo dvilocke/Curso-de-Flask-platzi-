@@ -1,0 +1,49 @@
+
+ <!--la funcion url_for('funcion de python'), pero tambien se puede usar
+        para buscar archivos de otras carpetas, por ejemplo en este ejemplo
+        estamos buscando en la carpeta static->images el archivo platzi.png
+
+        Nota: si la imagen no cargar por favor revisar si la ruta esta bien
+        o algunas veces las imagenes quedan cacheadas por lo tanto
+        tambien se debe usar ctrl + r para recargar la imagen
+
+        -->
+<!--
+<nav>
+    <ul>
+
+        <img src="{{url_for('static', filename = 'images/platzi.png')}}" alt=""/>
+        <li><a href="{{url_for('index')}}">Ir a Inicio</a></li>
+        <li><a href="https://platzi.com" target="_blank">Ir a platzi</a></li>
+    </ul>
+</nav>
+-->
+
+
+<div class="navbar navbar-inverse" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button"
+                    class="navbar-toggle"
+                    data-toggle="collapse"
+                    data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{ url_for('index') }}">
+                <img src="{{ url_for('static', filename='images/platzi.png') }}"
+                     style="max-width: 48px"
+                     alt="Platzi logo">
+            </a>
+        </div>
+
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="{{ url_for('index') }}">Inicio</a></li>
+                <li><a href="https://platzi.com" target="_blank">Platzi</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
